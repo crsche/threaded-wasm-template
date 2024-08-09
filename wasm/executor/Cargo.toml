@@ -1,0 +1,36 @@
+[package]
+name = "wasm-futures-executor"
+version = "0.2.0"
+edition = "2018"
+authors = ["Oliver Wangler <oliver@wngr.de>"]
+description = "Executor for asynchronous task based on wasm web workers"
+license = "Apache-2.0 OR MIT"
+repository = "https://github.com/wngr/wasm-futures-executor"
+homepage = "https://github.com/wngr/wasm-futures-executor"
+documentation = "https://docs.rs/wasm-futures-executor"
+keywords = ["thread", "wasm", "parallel", "concurrency", "async"]
+categories = ["concurrency", "wasm"]
+readme = "README.md"
+exclude = ["sample", "sample-webpack", ".github"]
+
+[dependencies]
+futures = { version = "0.3.21", features = ["std", "async-await"], default-features = false }
+js-sys = "0.3.56"
+log = "0.4.16"
+tokio = { version = "1.17.0", features = ["sync"] }
+wasm-bindgen = "0.2.79"
+wasm-bindgen-futures = "0.4.29"
+
+[dependencies.parking_lot]
+version = "0.12.0"
+# nightly: use a thread parker with atomics support
+features = ["nightly"]
+
+[dependencies.web-sys]
+version = "0.3.56"
+features = ["DedicatedWorkerGlobalScope","Navigator", "WorkerOptions", "WorkerType", "ErrorEvent", "Url"]
+
+[package.metadata.docs.rs]
+rustc-args = []
+cargo-args = []
+default-target = "x86_64-unknown-linux-gnu"
